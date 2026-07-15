@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lichtblick Kinderhilfe e.V. — Gemeinsam Zukunft schenken</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #F0F2EC;
+    --bg-warm: #E9E4D6;
+    --ink: #1B2420;
+    --ink-soft: #445046;
+    --teal: #1B3A3E;
+    --teal-deep: #10262A;
+    --gold: #B5862B;
+    --rust: #A54B2E;
+    --line: rgba(27,36,32,0.14);
+    --paper: #FBFAF6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--gold);
+    font-weight:500;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* Skip link */
+  .skip-link{position:absolute;left:-9999px;top:0;background:var(--teal);color:#fff;padding:10px 16px;z-index:200;}
+  .skip-link:focus{left:12px;top:12px;}
+
+  /* NAV */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(240,242,236,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;max-width:1080px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;
+  }
+  .logo-mark{
+    width:30px;height:30px;border-radius:50%;
+    background:conic-gradient(var(--gold) 0% 40%, var(--rust) 40% 70%, var(--teal) 70% 100%);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex;gap:28px;align-items:center;font-size:0.92rem;font-weight:500;}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);transition:color .15s;}
+  .nav-links a:hover,.nav-links a:focus-visible{color:var(--teal);}
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:0.92rem;
+    border:none;border-radius:6px;padding:11px 22px;cursor:pointer;
+    text-decoration:none;display:inline-block;transition:transform .15s, box-shadow .15s;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+  .btn-primary{background:var(--rust);color:#fff;}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(165,75,46,0.35);}
+  .btn-ghost{background:transparent;color:var(--teal);border:1.5px solid var(--teal);}
+  .btn-ghost:hover{background:var(--teal);color:#fff;}
+
+  /* HERO */
+  .hero{padding:88px 0 64px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(2.3rem,4.4vw,3.4rem);line-height:1.08;margin:14px 0 22px;}
+  .hero p.lead{font-size:1.1rem;color:var(--ink-soft);max-width:46ch;margin-bottom:30px;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-visual{
+    background:var(--teal);border-radius:18px;aspect-ratio:4/5;position:relative;overflow:hidden;
+    display:flex;align-items:flex-end;padding:26px;
+  }
+  .hero-visual::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 75% 20%, rgba(181,134,43,0.55), transparent 45%),
+      radial-gradient(circle at 20% 80%, rgba(165,75,46,0.45), transparent 50%);
+  }
+  .hero-visual-label{position:relative;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.8rem;}
+  .hero-visual-label b{display:block;font-family:'Fraunces',serif;font-size:1.9rem;font-weight:600;margin-bottom:4px;}
+
+  /* IMPACT STRIP */
+  .impact-strip{
+    background:var(--teal-deep);color:#fff;padding:40px 0;
+  }
+  .impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+  .impact-grid .num{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:600;color:var(--gold);}
+  .impact-grid .lbl{font-size:0.85rem;color:#CBD3CD;margin-top:4px;}
+
+  /* SECTION */
+  section{padding:76px 0;}
+  .section-head{max-width:56ch;margin-bottom:40px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);margin-top:10px;}
+
+  /* TRANSPARENCY — signature element */
+  .transparency{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .fund-bar{
+    display:flex;width:100%;height:52px;border-radius:8px;overflow:hidden;margin:36px 0 22px;
+    box-shadow:0 1px 0 rgba(0,0,0,0.05) inset;
+  }
+  .fund-seg{display:flex;align-items:center;justify-content:center;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:0.82rem;font-weight:500;position:relative;cursor:default;}
+  .fund-seg:hover .fund-tip{opacity:1;transform:translateY(0);}
+  .fund-tip{
+    position:absolute;bottom:calc(100% + 10px);left:50%;transform:translate(-50%,4px);
+    background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;font-family:'Inter',sans-serif;
+    font-size:0.8rem;white-space:nowrap;opacity:0;transition:opacity .15s, transform .15s;pointer-events:none;
+  }
+  .fund-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:28px;}
+  .fund-legend-item{display:flex;gap:12px;align-items:flex-start;}
+  .fund-dot{width:12px;height:12px;border-radius:3px;margin-top:5px;flex-shrink:0;}
+  .fund-legend-item h4{font-size:0.95rem;margin:0 0 3px;font-weight:600;}
+  .fund-legend-item p{margin:0;font-size:0.85rem;color:var(--ink-soft);}
+  .report-link{
+    margin-top:32px;padding:18px 22px;border:1.5px dashed var(--line);border-radius:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font-size:0.92rem;
+  }
+
+  /* TEAM */
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .team-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px;}
+  .team-avatar{width:52px;height:52px;border-radius:50%;background:var(--bg-warm);margin-bottom:14px;
+    display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:600;color:var(--teal);}
+  .team-card h4{font-size:1rem;margin-bottom:2px;}
+  .team-role{font-size:0.8rem;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;}
+  .team-card p{font-size:0.88rem;color:var(--ink-soft);margin:0;}
+
+  /* DONATE */
+  .donate{background:var(--teal);color:#fff;}
+  .donate .section-head p{color:#CBD3CD;}
+  .donate-card{
+    background:var(--paper);color:var(--ink);border-radius:16px;padding:34px;max-width:480px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.25);
+  }
+  .toggle{display:flex;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:22px;}
+  .toggle button{
+    flex:1;border:none;background:transparent;padding:10px;border-radius:6px;font-family:'Inter',sans-serif;
+    font-weight:600;font-size:0.88rem;cursor:pointer;color:var(--ink-soft);
+  }
+  .toggle button.active{background:var(--teal);color:#fff;}
+  .amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+  .amounts button{
+    padding:14px 6px;border-radius:8px;border:1.5px solid var(--line);background:#fff;
+    font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:0.95rem;cursor:pointer;color:var(--ink);
+  }
+  .amounts button.active{border-color:var(--rust);background:rgba(165,75,46,0.08);color:var(--rust);}
+  .custom-amount{
+    width:100%;padding:13px 14px;border-radius:8px;border:1.5px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:0.95rem;margin-bottom:20px;
+  }
+  .pay-icons{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap;}
+  .pay-icons span{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;border:1px solid var(--line);
+    padding:6px 10px;border-radius:6px;color:var(--ink-soft);
+  }
+  .donate-note{font-size:0.78rem;color:var(--ink-soft);margin-top:14px;}
+
+  /* FAQ */
+  details{border-bottom:1px solid var(--line);padding:18px 0;}
+  summary{font-family:'Fraunces',serif;font-weight:500;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";font-family:'Inter',sans-serif;font-size:1.3rem;color:var(--gold);}
+  details[open] summary::after{content:"–";}
+  details p{margin:12px 0 0;color:var(--ink-soft);font-size:0.94rem;max-width:64ch;}
+
+  /* FOOTER */
+  footer{background:var(--teal-deep);color:#CBD3CD;padding:56px 0 28px;font-size:0.88rem;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;margin-bottom:36px;}
+  footer h5{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:14px;}
+  footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;}
+  footer a{text-decoration:none;color:#CBD3CD;}
+  footer a:hover{color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.14);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:0.78rem;color:#8FA098;}
+  .demo-badge{
+    background:rgba(181,134,43,0.18);border:1px solid rgba(181,134,43,0.4);color:#E8C77A;
+    padding:2px 9px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+  }
+
+  /* MODAL */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(16,38,42,0.55);display:none;align-items:center;justify-content:center;
+    z-index:300;padding:20px;
+  }
+  .modal-backdrop.open{display:flex;}
+  .modal{background:var(--paper);border-radius:14px;padding:30px;max-width:400px;text-align:center;}
+  .modal h3{margin-bottom:12px;}
+  .modal p{color:var(--ink-soft);font-size:0.92rem;margin-bottom:20px;}
+
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;aspect-ratio:16/9;}
+    .impact-grid{grid-template-columns:repeat(2,1fr);}
+    .team-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .amounts{grid-template-columns:repeat(2,1fr);}
+    .nav-links{display:none;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<header>
+  <nav>
+    <div class="logo"><span class="logo-mark" aria-hidden="true"></span>Lichtblick Kinderhilfe e.V.</div>
+    <div class="nav-links">
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#transparenz">Transparenz</a>
+      <a href="#team">Vorstand</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <a href="#spenden" class="btn btn-primary">Jetzt spenden</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Gegründet 2014 · Bonn</span>
+        <h1>Jedes Kind verdient einen sicheren Ort zum Aufwachsen.</h1>
+        <p class="lead">Wir finanzieren Bildung, Betreuung und Nothilfe für Kinder in schwierigen Lebenslagen — und zeigen offen, wohin jeder Euro fließt.</p>
+        <div class="hero-cta">
+          <a href="#spenden" class="btn btn-primary">Jetzt spenden</a>
+          <a href="#transparenz" class="btn btn-ghost">Mittelverwendung ansehen</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-label"><b>1.284</b>geförderte Kinder seit Gründung</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT STRIP -->
+  <div class="impact-strip">
+    <div class="wrap impact-grid">
+      <div><div class="num">1.284</div><div class="lbl">Geförderte Kinder</div></div>
+      <div><div class="num">37</div><div class="lbl">Projektstandorte</div></div>
+      <div><div class="num">86 %</div><div class="lbl">Direkt in Projekte</div></div>
+      <div><div class="num">11 J.</div><div class="lbl">Aktive Jahre</div></div>
+    </div>
+  </div>
+
+  <!-- ÜBER UNS -->
+  <section id="ueber-uns">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Über uns</span>
+        <h2>Kleine Organisation, klarer Auftrag.</h2>
+      </div>
+      <p style="max-width:64ch;color:var(--ink-soft);">Lichtblick Kinderhilfe e.V. wurde 2014 von einer kleinen Gruppe aus Sozialpädagog:innen und Ehrenamtlichen gegründet. Wir arbeiten mit lokalen Partnereinrichtungen zusammen, statt eigene Verwaltungsstrukturen aufzubauen — so bleibt mehr von jeder Spende dort, wo sie gebraucht wird: bei den Kindern selbst.</p>
+    </div>
+  </section>
+
+  <!-- TRANSPARENZ -->
+  <section id="transparenz" class="transparency">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Transparenz</span>
+        <h2>So wird jeder Euro verwendet.</h2>
+      </div>
+
+      <div class="fund-bar" role="img" aria-label="Mittelverwendung: 46% Bildungsprogramme, 24% Nothilfe, 16% Gesundheit, 14% Verwaltung und Kommunikation">
+        <div class="fund-seg" style="width:46%;background:var(--teal);">46%
+          <span class="fund-tip">Bildungsprogramme — Schulmaterial, Nachhilfe, Stipendien</span>
+        </div>
+        <div class="fund-seg" style="width:24%;background:var(--rust);">24%
+          <span class="fund-tip">Nothilfe — akute Krisenunterstützung für Familien</span>
+        </div>
+        <div class="fund-seg" style="width:16%;background:var(--gold);">16%
+          <span class="fund-tip">Gesundheit — Vorsorge & medizinische Grundversorgung</span>
+        </div>
+        <div class="fund-seg" style="width:14%;background:#7C8A80;">14%
+          <span class="fund-tip">Verwaltung & Kommunikation</span>
+        </div>
+      </div>
+
+      <div class="fund-legend">
+        <div class="fund-legend-item"><span class="fund-dot" style="background:var(--teal);"></span>
+          <div><h4>Bildung — 46 %</h4><p>Schulmaterial, Nachhilfe, Stipendien für weiterführende Schulen.</p></div>
+        </div>
+        <div class="fund-legend-item"><span class="fund-dot" style="background:var(--rust);"></span>
+          <div><h4>Nothilfe — 24 %</h4><p>Kurzfristige Unterstützung bei akuten Familienkrisen.</p></div>
+        </div>
+        <div class="fund-legend-item"><span class="fund-dot" style="background:var(--gold);"></span>
+          <div><h4>Gesundheit — 16 %</h4><p>Vorsorgeuntersuchungen und medizinische Grundversorgung.</p></div>
+        </div>
+        <div class="fund-legend-item"><span class="fund-dot" style="background:#7C8A80;"></span>
+          <div><h4>Verwaltung — 14 %</h4><p>Buchhaltung, Prüfung, Koordination der Projektstandorte.</p></div>
+        </div>
+      </div>
+
+      <div class="report-link">
+        <span>📄 Geprüfter Jahresbericht 2025 (Mittelverwendung &amp; Finanzen) — als PDF</span>
+        <a href="#" class="btn btn-ghost" onclick="return false;">Bericht ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Vorstand</span>
+        <h2>Die Menschen hinter der Organisation.</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">A</div>
+          <h4>Anna Reuter</h4>
+          <div class="team-role">1. Vorsitzende</div>
+          <p>Sozialpädagogin, seit 2014 im Verein aktiv.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">M</div>
+          <h4>Markus Vogt</h4>
+          <div class="team-role">Schatzmeister</div>
+          <p>Verantwortlich für Finanzen &amp; Jahresberichte.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">S</div>
+          <h4>Sophie Ahn</h4>
+          <div class="team-role">Projektkoordination</div>
+          <p>Betreut die Partnereinrichtungen vor Ort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPENDEN -->
+  <section id="spenden" class="donate">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow" style="color:#E8C77A;">Spenden</span>
+          <h2>Werde Teil des Lichtblicks.</h2>
+        </div>
+        <p style="max-width:44ch;">Jeder Betrag hilft — 25 € finanzieren zum Beispiel ein Monat Schulmaterial für ein Kind. Du erhältst automatisch eine Spendenquittung per E-Mail.</p>
+      </div>
+
+      <form class="donate-card" id="donateForm">
+        <div class="toggle">
+          <button type="button" class="active" data-freq="einmalig">Einmalig</button>
+          <button type="button" data-freq="monatlich">Monatlich</button>
+        </div>
+        <div class="amounts" role="group" aria-label="Betrag auswählen">
+          <button type="button" data-amount="10">10 €</button>
+          <button type="button" data-amount="25" class="active">25 €</button>
+          <button type="button" data-amount="50">50 €</button>
+          <button type="button" data-amount="custom">Andere</button>
+        </div>
+        <input type="number" class="custom-amount" placeholder="Eigener Betrag in €" style="display:none;" id="customInput" min="1">
+        <div class="pay-icons">
+          <span>Kreditkarte</span><span>PayPal</span><span>SEPA-Lastschrift</span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Weiter zur Zahlung</button>
+        <p class="donate-note">Dies ist ein Schulprojekt-Mockup. Es findet keine echte Zahlungsverarbeitung statt.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap" style="max-width:760px;">
+      <div class="section-head">
+        <span class="eyebrow">Häufige Fragen</span>
+        <h2>Gut zu wissen.</h2>
+      </div>
+      <details>
+        <summary>Ist meine Spende steuerlich absetzbar?</summary>
+        <p>Ja, als eingetragener gemeinnütziger Verein stellen wir automatisch eine Spendenquittung aus.</p>
+      </details>
+      <details>
+        <summary>Wie viel meiner Spende kommt wirklich an?</summary>
+        <p>86 % jeder Spende fließen direkt in Projekte vor Ort, 14 % decken Verwaltung und Kommunikation.</p>
+      </details>
+      <details>
+        <summary>Kann ich meine monatliche Spende jederzeit kündigen?</summary>
+        <p>Ja, formlos per E-Mail oder über den Link in jeder Spendenbestätigung.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fff;margin-bottom:12px;"><span class="logo-mark" aria-hidden="true"></span>Lichtblick Kinderhilfe e.V.</div>
+        <p style="max-width:34ch;">Musterstraße 12, 53111 Bonn<br>Registergericht Bonn, VR 12345<br>Als gemeinnützig anerkannt seit 2015</p>
+      </div>
+      <div>
+        <h5>Organisation</h5>
+        <ul><li><a href="#ueber-uns">Über uns</a></li><li><a href="#transparenz">Transparenz</a></li><li><a href="#team">Vorstand</a></li></ul>
+      </div>
+      <div>
+        <h5>Rechtliches</h5>
+        <ul><li><a href="#" onclick="return false;">Impressum</a></li><li><a href="#" onclick="return false;">Datenschutz</a></li><li><a href="#" onclick="return false;">Satzung</a></li></ul>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul><li>kontakt@lichtblick-beispiel.de</li><li>+49 (0)228 000 0000</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Lichtblick Kinderhilfe e.V. — Fiktives Beispiel</span>
+      <span class="demo-badge">Schulprojekt · Demo, keine echte Organisation</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3>Demo-Hinweis</h3>
+    <p>Dies ist eine Beispielseite für ein Schulprojekt. Es wird keine echte Zahlung ausgelöst und kein Geld verarbeitet.</p>
+    <button class="btn btn-primary" id="modalClose">Verstanden</button>
+  </div>
+</div>
+
+<script>
+  // Frequenz-Toggle
+  document.querySelectorAll('.toggle button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.toggle button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Betrag-Auswahl
+  const customInput = document.getElementById('customInput');
+  document.querySelectorAll('.amounts button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.amounts button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      if(btn.dataset.amount === 'custom'){
+        customInput.style.display='block';
+        customInput.focus();
+      } else {
+        customInput.style.display='none';
+      }
+    });
+  });
+
+  // Formular -> Demo-Modal statt echter Zahlung
+  const form = document.getElementById('donateForm');
+  const backdrop = document.getElementById('modalBackdrop');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    backdrop.classList.add('open');
+  });
+  document.getElementById('modalClose').addEventListener('click',()=>{
+    backdrop.classList.remove('open');
+  });
+  backdrop.addEventListener('click', e=>{
+    if(e.target === backdrop) backdrop.classList.remove('open');
+  });
+</script>
+
+</body>
+</html>
